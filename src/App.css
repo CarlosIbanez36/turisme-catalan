@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+:root {
+  /* LA NUEVA PALETA */
+  --color-papel: #f7f4eb;       /* Fondo general, como papel de libro */
+  --color-tierra: #8c5e44;      /* Botones, acentos, enlaces (terracota) */
+  --color-cielo: #2c3e50;       /* Títulos principales (azul oscuro profundo) */
+  --color-mar: #5b7c8d;         /* Textos secundarios, etiquetas (azul mediterráneo suave) */
+  --color-texto: #333333;       /* Texto de lectura principal */
+  --color-blanco: #ffffff;
+  
+  --fuente-titulos: 'Playfair Display', serif;
+  --fuente-textos: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-textos);
+  background-color: var(--color-papel); /* El fondo ahora es papel */
+  color: var(--color-texto);
+  line-height: 1.7; /* Un poco más de aire entre líneas */
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1.2s ease-out forwards;
+}
+.delay-1 { animation-delay: 0.3s; }
+.delay-2 { animation-delay: 0.6s; }
+
+/* --- PORTADA (Home) --- */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--color-blanco);
+  text-align: center;
+  background-color: rgba(26, 26, 26, 0.45); /* Un filtro un poco más cálido */
+  padding: 0 1rem;
+}
+.hero-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  font-weight: 700;
+}
+.hero-subtitulo {
+  font-size: 1.3rem;
+  max-width: 700px;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+.hero-boton {
+  margin-top: 2.5rem;
+  padding: 1rem 2.5rem;
+  background-color: var(--color-tierra); /* Botón color tierra */
+  color: var(--color-blanco);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 1px solid transparent;
+}
+.hero-boton:hover {
+  transform: translateY(-2px);
+  background-color: #744b35; /* Tierra más oscuro al pasar el ratón */
+}
+
+/* --- LISTADO (AtractiusList) --- */
+.listado-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+.listado-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(140, 94, 68, 0.3); /* Línea sutil tierra */
+  padding-bottom: 1rem;
+}
+.listado-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 2.8rem;
+  color: var(--color-cielo);
+  font-weight: 600;
+}
+.boton-volver {
+  color: var(--color-mar);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+.boton-volver:hover {
+  color: var(--color-tierra);
+}
+.grid-atractivos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+/* --- TARJETAS (AtractiuCard) --- */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+  border-radius: 8px; /* Bordes un poco menos redondeados, más sobrios */
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.tarjeta:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+.tarjeta-img-wrapper {
+  overflow: hidden;
+  height: 240px;
+}
+.tarjeta-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.tarjeta:hover .tarjeta-img {
+  transform: scale(1.05);
+}
+.tarjeta-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.tarjeta-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.6rem;
+  color: var(--color-cielo);
+  margin-bottom: 0.5rem;
+}
+.tarjeta-meta {
+  font-size: 0.9rem;
+  color: var(--color-mar);
+  margin-bottom: 1.5rem;
+}
+.tarjeta-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.tag {
+  font-size: 0.75rem;
+  background-color: rgba(92, 124, 141, 0.1); /* Fondo mar muy suave */
+  color: var(--color-mar);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px; /* Etiquetas rectangulares, más editoriales */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- DETALLE (AtractiuDetall) --- */
+.detalle-contenedor {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+.detalle-img {
+  width: 100%;
+  max-height: 550px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.detalle-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 3.5rem;
+  color: var(--color-cielo);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+.detalle-meta {
+  color: var(--color-tierra);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(140, 94, 68, 0.2);
+}
+.detalle-texto {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: var(--color-texto);
+}
